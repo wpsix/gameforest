@@ -21,14 +21,16 @@ const PATH                   = window.path ? window.path : 'plugins'
 const Font = {
     SOLID                : '.fas',
     REGULAR              : '.far',
+    LIGHT                : '.fal',
     BRAND                : '.fab'
 }
 
 const FontAwesome = {
     CSS                  : `${PATH}/fontawesome/css/fontawesome.min.css`,
-    REGULAR              : `${PATH}/fontawesome/css/regular.min.css`,
-    BRAND                : `${PATH}/fontawesome/css/brands.min.css`,
-    SOLID                : `${PATH}/fontawesome/css/solid.min.css`
+    SOLID                : `${PATH}/fontawesome/css/solid.min.css`,
+	REGULAR              : `${PATH}/fontawesome/css/regular.min.css`,
+	LIGHT                : `${PATH}/fontawesome/css/light.min.css`,
+	BRAND                : `${PATH}/fontawesome/css/brands.min.css`
 }
 
 /**
@@ -89,6 +91,20 @@ class Icons {
 
         return true
     }
+	
+	_light() {
+        if (document.querySelector(Font.LIGHT)) {
+            // create stylesheet
+            const fal = document.createElement('link')
+            fal.rel = 'stylesheet'
+            fal.href = FontAwesome.LIGHT
+
+            // append stylesheet
+            document.head.appendChild(fal)
+        }
+
+        return true
+    }
 
     _get() {
         // append stylesheet
@@ -96,8 +112,10 @@ class Icons {
 
         // detect type
         this._solid()
+		this._regular()
+		this._light()
         this._brand()
-        this._regular()
+        
     }
 
     // static
